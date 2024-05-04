@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
     private val riddlesAndAnswers = listOf(
         Pair("Что можно увидеть с закрытыми глазами?", "Сон"),
         Pair("Что делают бегемоты на рождество?", "Подарки"),
-//        Pair("Что можно сломать, если захотеть?", "Обещание"),
+        Pair("Что можно сломать, если захотеть?", "Обещание"),
 //        Pair("Что вчера было сегодня, а завтра будет вчера?", "Вчера"),
 //        Pair("Что упало с неба и встало на землю?", "Дождь"),
 //        Pair("Что бывает только один раз?", "Судный день"),
@@ -60,9 +60,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     // Генерация случайной загадки
-    private fun generateRandomRiddle(): String {
-        val randomIndex = (riddlesAndAnswers.indices).random()
-        return riddlesAndAnswers[randomIndex].first
+    private fun generateNextRiddle(): String {
+        val nextRiddle = riddlesAndAnswers[currentRiddleIndex % riddlesAndAnswers.size].first
+        return nextRiddle
     }
 
     // Обработчик нажатия кнопки "Ответ"
@@ -91,7 +91,7 @@ class MainActivity : AppCompatActivity() {
 
     // Обработчик нажатия кнопки "Загадка"
     private fun onButtonGetRiddleClick() {
-        val randomRiddle = generateRandomRiddle()
+        val randomRiddle = generateNextRiddle()
         binding.textViewRiddle.text = randomRiddle
         binding.textViewRiddle.visibility = View.VISIBLE
 
